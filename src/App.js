@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 
-const HoursRegex = RegExp(/^[0-9]*$/);
-
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
 
@@ -26,18 +24,20 @@ class App extends Component {
     this.state = {
       StartDate: null,
       EndDate: null,
-      Hours: null,
+      Reason: null,
+      LeaveType: null,
       formErrors: {
         StartDate: "",
         EndDate: "",
-        Hours: ""
+        Reason: "",
+        LeaveType: ""
       }
     };
   }
 
   handleSubmit = e => {
     if (formValid(this.state)) {
-      alert(`Overtime Apply Successfull !!!!`);
+      alert(`Leave Apply Successfull !!!!`);
       console.log(this.state);
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
@@ -59,8 +59,13 @@ class App extends Component {
         formErrors.EndDate =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
-      case "Hours":
-        formErrors.Hours = HoursRegex.test(value) ? "" : "Input in Digits";
+      case "Reason":
+        formErrors.Reason =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        break;
+      case "LeaveType":
+        formErrors.LeaveType =
+          value.length < 3 ? "minimum 3 characaters required" : "";
         break;
       default:
         break;
@@ -75,7 +80,7 @@ class App extends Component {
     return (
       <div className="wrapper">
         <div className="form-wrapper">
-          <h1>Apply for Overtime</h1>
+          <h1>Apply for Leaves</h1>
           <form onSubmit={this.handleSubmit} noValidate>
             <div className="StartDate">
               <label htmlFor="StartDate">Start Date</label>
@@ -105,18 +110,32 @@ class App extends Component {
                 <span className="errorMessage">{formErrors.EndDate}</span>
               )}
             </div>
-            <div className="Hours">
-              <label htmlFor="Hours">Hours</label>
+            <div className="Reason">
+              <label htmlFor="">Reason</label>
               <input
-                className={formErrors.Hours.length > 0 ? "error" : null}
-                placeholder="Hours"
+                className={formErrors.Reason.length > 0 ? "error" : null}
+                placeholder="Reason"
                 type="text"
-                name="Hours"
+                name="Reason"
                 noValidate
                 onChange={this.handleChange}
               />
-              {formErrors.Hours.length > 0 && (
-                <span className="errorMessage">{formErrors.Hours}</span>
+              {formErrors.Reason.length > 0 && (
+                <span className="errorMessage">{formErrors.Reason}</span>
+              )}
+            </div>
+            <div className="LeaveType">
+              <label htmlFor="">Leave Type</label>
+              <input
+                className={formErrors.LeaveType.length > 0 ? "error" : null}
+                placeholder="Leave Type"
+                type="text"
+                name="LeaveType"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.LeaveType.length > 0 && (
+                <span className="errorMessage">{formErrors.LeaveType}</span>
               )}
             </div>
             <div className="Apply">

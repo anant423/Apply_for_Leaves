@@ -65,7 +65,8 @@ input.error {
 
 .StartDate,
 .EndDate,
-.Hours {
+.Reason,
+.LeaveType {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
@@ -73,7 +74,8 @@ input.error {
 
 .StartDate,
 .EndDate,
-.Hours {
+.Reason,
+.LeaveType {
   width: 100%;
 }
 
